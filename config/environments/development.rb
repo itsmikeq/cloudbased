@@ -34,4 +34,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  if ENV['USE_RUBYMINE']
+    if defined? BetterErrors
+      BetterErrors.editor = proc { |full_path, line|
+        "x-mine://open?file=#{full_path}&line=#{line}"
+      }
+    end
+  end
 end
